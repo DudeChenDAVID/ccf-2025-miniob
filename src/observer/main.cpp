@@ -48,6 +48,8 @@ void usage()
   cout << "-d: durbility mode. {vacuous(default), disk}" << endl;
   // TODO: support multi dbs(storage/db/db.h) and remove this options
   cout << "-E: storage engine. {heap(default), lsm}" << endl;
+  cout << "hello world" << endl;
+
 }
 
 void parse_parameter(int argc, char **argv)
