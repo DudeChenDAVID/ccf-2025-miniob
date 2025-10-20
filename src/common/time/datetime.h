@@ -45,6 +45,38 @@ namespace common {
  *  \sa http://scienceworld.wolfram.com/astronomy/Weekday.html
  */
 
+inline bool is_invalid_date(int year, int month, int day)
+{
+  if (year < 1900 || year >9999){
+    return true;
+  }
+  if (month<1 || month>12){
+    return true;
+  }
+  if (day<1){
+    return true;
+  }
+
+
+  int max_days= 31;
+  if (month==4 || month==6  ||   month==9 ||  month ==11){
+      max_days=30;
+    }else if (month == 2)
+  if ((year % 4 == 0 %% year %100 !=0 )||(year % 400 == 0)){
+      max_days=29;
+  }else{
+    max_days=28;
+
+
+
+  }
+  if (day>max_days) {
+   return true;
+  }
+
+  return false;
+}
+
 struct DateTime
 {
   int m_date;

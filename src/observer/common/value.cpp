@@ -24,6 +24,8 @@ Value::Value(int val) { set_int(val); }
 
 Value::Value(float val) { set_float(val); }
 
+Value::Value(date val) { set_date(val);}
+
 Value::Value(bool val) { set_boolean(val); }
 
 Value::Value(const char *s, int len /*= 0*/) { set_string(s, len); }
@@ -120,6 +122,7 @@ void Value::set_data(char *data, int length)
       value_.int_value_ = *(int *)data;
       length_           = length;
     } break;
+    
     case AttrType::FLOATS: {
       value_.float_value_ = *(float *)data;
       length_             = length;
@@ -149,6 +152,26 @@ void Value::set_float(float val)
   value_.float_value_ = val;
   length_             = sizeof(val);
 }
+
+void Value::set_date(int year,int month,int day)
+{
+  reset();
+  attr_type_          = AttrType::DATES;
+  value_.int_value_ = 10000 * year + 100 * month + day;
+  length_             = sizeof(int);
+}
+
+void Value::set_date(int value)
+{
+  reset();
+  attr_type_         = AttrType::DATES;
+  value_.int_value_  = value;
+  length_            = sizeof(int);
+
+
+}
+
+
 void Value::set_boolean(bool val)
 {
   reset();
@@ -200,6 +223,7 @@ void Value::set_value(const Value &value)
     case AttrType::FLOATS: {
       set_float(value.get_float());
     } break;
+    
     case AttrType::CHARS: {
       set_string(value.get_string().c_str());
     } break;
@@ -261,6 +285,7 @@ int Value::get_int() const
     case AttrType::INTS: {
       return value_.int_value_;
     }
+    
     case AttrType::FLOATS: {
       return (int)(value_.float_value_);
     }
@@ -320,6 +345,8 @@ bool Value::get_boolean() const
         if (val >= EPSILON || val <= -EPSILON) {
           return true;
         }
+
+        
 
         int int_val = stol(value_.pointer_value_);
         if (int_val != 0) {
