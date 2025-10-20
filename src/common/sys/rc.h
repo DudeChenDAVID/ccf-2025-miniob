@@ -86,14 +86,14 @@ See the Mulan PSL v2 for more details. */
   DEFINE_RC(SYNTAX_ERROR)                \
   DEFINE_RC(UNSUPPORTED)                 \
   DEFINE_RC(INVALID_DATE_FORMAT)         \
-enum class RC
+enum class RCType
 {
 #define DEFINE_RC(name) name,
   DEFINE_RCS
 #undef DEFINE_RC
 };
 
-extern const char *strrc(RC rc);
+extern const char *strrc(RCType rc);
 
-extern bool OB_SUCC(RC rc);
-extern bool OB_FAIL(RC rc);
+extern bool OB_SUCC(RCType rc);
+extern bool OB_FAIL(RCType rc);
