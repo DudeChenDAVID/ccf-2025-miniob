@@ -21,7 +21,7 @@ RC DateType::set_value_from_str(Value &val, const string &data) const
 
         return RC::INVALID_DATE_FORMAT;
     }
-    if (is_invalid_date(year,month,day)){
+    if (common::is_invalid_date(year,month,day)){
 
         return RC::INVALID_DATE_FORMAT;
     }
@@ -29,6 +29,21 @@ RC DateType::set_value_from_str(Value &val, const string &data) const
 
     return RC::SUCCESS;
     
+}
+RC DateType::cast_to(const Value &val, AttrType type, Value &result) const
+{
+  switch (type) {
+    default: return RC::UNIMPLEMENTED;
+  }
+  return RC::SUCCESS;
+}
+
+int DateType::cast_cost(AttrType type)
+{
+  if (type == AttrType::DATES) {
+    return 0;
+  }
+  return INT32_MAX;
 }
 RC   DateType::to_string(const Value &val, string &result) const
 {

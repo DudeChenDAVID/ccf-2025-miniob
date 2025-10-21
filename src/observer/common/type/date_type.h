@@ -2,6 +2,7 @@
 #include "common/type/attr_type.h"
 #include "common/sys/rc.h"
 #include "common/value.h"
+#pragma once
 
 class DateType : public DataType
 {
