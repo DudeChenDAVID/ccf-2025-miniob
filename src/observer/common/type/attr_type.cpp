@@ -41,3 +41,5 @@ bool is_string_type(AttrType type)
 {
   return (type == AttrType::CHARS);
 }
+
+
